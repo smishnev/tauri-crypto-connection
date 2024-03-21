@@ -16,32 +16,36 @@ import { Route as rootRoute } from './routes/__root'
 
 // Create Virtual Routes
 
-const SettingsLazyImport = createFileRoute('/settings')()
-const BybitLazyImport = createFileRoute('/bybit')()
-const BinanceLazyImport = createFileRoute('/binance')()
 const IndexLazyImport = createFileRoute('/')()
+const SettingsSettingsLazyImport = createFileRoute('/settings/settings')()
+const BybitBybitLazyImport = createFileRoute('/bybit/bybit')()
+const BinanceBinanceLazyImport = createFileRoute('/binance/binance')()
 
 // Create/Update Routes
-
-const SettingsLazyRoute = SettingsLazyImport.update({
-  path: '/settings',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/settings.lazy').then((d) => d.Route))
-
-const BybitLazyRoute = BybitLazyImport.update({
-  path: '/bybit',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/bybit.lazy').then((d) => d.Route))
-
-const BinanceLazyRoute = BinanceLazyImport.update({
-  path: '/binance',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/binance.lazy').then((d) => d.Route))
 
 const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+
+const SettingsSettingsLazyRoute = SettingsSettingsLazyImport.update({
+  path: '/settings/settings',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() =>
+  import('./routes/settings/settings.lazy').then((d) => d.Route),
+)
+
+const BybitBybitLazyRoute = BybitBybitLazyImport.update({
+  path: '/bybit/bybit',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/bybit/bybit.lazy').then((d) => d.Route))
+
+const BinanceBinanceLazyRoute = BinanceBinanceLazyImport.update({
+  path: '/binance/binance',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() =>
+  import('./routes/binance/binance.lazy').then((d) => d.Route),
+)
 
 // Populate the FileRoutesByPath interface
 
@@ -51,16 +55,16 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
-    '/binance': {
-      preLoaderRoute: typeof BinanceLazyImport
+    '/binance/binance': {
+      preLoaderRoute: typeof BinanceBinanceLazyImport
       parentRoute: typeof rootRoute
     }
-    '/bybit': {
-      preLoaderRoute: typeof BybitLazyImport
+    '/bybit/bybit': {
+      preLoaderRoute: typeof BybitBybitLazyImport
       parentRoute: typeof rootRoute
     }
-    '/settings': {
-      preLoaderRoute: typeof SettingsLazyImport
+    '/settings/settings': {
+      preLoaderRoute: typeof SettingsSettingsLazyImport
       parentRoute: typeof rootRoute
     }
   }
@@ -70,9 +74,9 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   IndexLazyRoute,
-  BinanceLazyRoute,
-  BybitLazyRoute,
-  SettingsLazyRoute,
+  BinanceBinanceLazyRoute,
+  BybitBybitLazyRoute,
+  SettingsSettingsLazyRoute,
 ])
 
 /* prettier-ignore-end */

@@ -3,9 +3,157 @@
 @tailwind utilities;
 
 
-body {
+@layer base {
+	@font-face {
+	  font-family: 'Inter';
+	  font-style: normal;
+	  font-weight: 100 900;
+	  font-variation-settings: 'slnt' 0;
+	  font-display: optional;
+	  src: url('../public/fonts/inter-variable_font_slnt_wght.ttf');
+	}
+  
+	@font-face {
+	  font-family: 'Inter Fallback';
+	  font-style: normal;
+	  font-weight: 400;
+	  src: local('Arial');
+	  ascent-override: 90%;
+	  descent-override: 22.43%;
+	  line-gap-override: 0%;
+	  size-adjust: 107.64%;
+	}
+  }
+  
+  :root {
+	--background: 0 0% 100%;
+	--foreground: 222.2 47.4% 11.2%;
+  
+	--muted: 210 40% 96.1%;
+	--muted-foreground: 215.4 16.3% 46.9%;
+  
+	--popover: 0 0% 100%;
+	--popover-foreground: 222.2 47.4% 11.2%;
+  
+	--card: 0 0% 100%;
+	--card-foreground: 222.2 47.4% 11.2%;
+  
+	--border: 214.3 31.8% 91.4%;
+	--input: 214.3 31.8% 91.4%;
+  
+	--primary: 222.2 47.4% 11.2%;
+	--primary-foreground: 210 40% 98%;
+  
+	--secondary: 210 40% 96.1%;
+	--secondary-foreground: 222.2 47.4% 11.2%;
+  
+	--accent: 210 40% 96.1%;
+	--accent-foreground: 222.2 47.4% 11.2%;
+  
+	--destructive: 0 100% 50%;
+	--destructive-foreground: 210 40% 98%;
+  
+	--success: 142.1 70.6% 45.3%;
+	--success-foreground: 210 40% 98%;
+  
+	--info: 198.6 88.7% 48.4%;
+	--info-foreground: 210 40% 98%;
+  
+	--ring: 215 20.2% 65.1%;
+  
+	--radius: 0.5rem;
+  }
+  
+  :root .logoDark {
+	display: none;
+  }
+  
+  :root .logo {
+	display: block;
+  }
+  
+  html.dark {
+	--background: 224 71% 4%;
+	--foreground: 213 31% 91%;
+  
+	--muted: 223 47% 11%;
+	--muted-foreground: 215.4 16.3% 56.9%;
+  
+	--popover: 224 71% 4%;
+	--popover-foreground: 215 20.2% 65.1%;
+  
+	--card: 224 71% 4%;
+	--card-foreground: 213 31% 91%;
+  
+	--border: 216 34% 17%;
+	--input: 216 34% 17%;
+  
+	--primary: 210 40% 98%;
+	--primary-foreground: 222.2 47.4% 1.2%;
+  
+	--secondary: 222.2 47.4% 11.2%;
+	--secondary-foreground: 210 40% 98%;
+  
+	--accent: 216 34% 17%;
+	--accent-foreground: 210 40% 98%;
+  
+	--success: 142.1 76.2% 36.3%;
+	--success-foreground: 210 40% 98%;
+  
+	--info: 200.4 98% 39.4%;
+	--info-foreground: 210 40% 98%;
+  
+	--ring: 216 34% 17%;
+  
+	--radius: 0.5rem;
+  }
+  
+  html.dark .logo {
+	display: none;
+  }
+  
+  html.dark .logoDark {
+	display: block;
+  }
+  
+  * {
+	@apply border-border;
+  }
+  
+  body {
 	@apply bg-background text-foreground font-inter;
 	font-feature-settings:
 	  'rlig' 1,
 	  'calt' 1;
-}
+  }
+  
+  /** SCROLLBAR styles. Use .custom-scrollbar class **/
+  /* width */
+  .custom-scrollbar::-webkit-scrollbar {
+	width: 5px;
+  }
+  
+  /* Track */
+  .custom-scrollbar::-webkit-scrollbar-track {
+	background: transparent;
+	border-radius: 2px;
+  }
+  
+  /* Handle */
+  html.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+	background: rgba(255, 255, 255, 0.25);
+	border-radius: 2px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+	background: rgba(0, 0, 0, 0.25);
+	border-radius: 2px;
+  }
+  
+  /* Handle on hover */
+  html.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+	background: rgba(255, 255, 255, 0.35);
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+	background: rgba(0, 0, 0, 0.35);
+  }
+  
